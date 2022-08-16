@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Express Javascript Post</title>
+  </head>
+  <body>
+    <div>
+      <form action="/login" method="post">
+        <input type="text" name="name" autocomplete="false" class="input" />
+        <button type="submit" class="btn">Submit</button>
+    </div>
+    <h5 class="result"></h5>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      const result = document.querySelector(".result");
+      const fetchPeople = async () => {
+        try {
+          const {data} = await axios.get('/api/people');
+          console.log(data,"data")
+          const people = data.data.map((person)=>{
+            return `<h5>${person.name}</h5>`
+          })
+          result.innerHTML=people.join("");
+        } catch (error) {
+          result.innerHTML=`<div> Can't fetch the data </div>`
+        }
+      }
+      fetchPeople();
+      const btn = document.querySelector(".btn");
+      const input = document.querySelector(".input");
+      btn.addEventListener("click",async (e)=>{
+        e.preventDefault();
+        const newValue = input.value;
+        
+        try {
+          const {data} = await axios.post("/api/people", {name: newValue});
+          const h5 = document.createElement('h5');
+          h5.textContent = data.person;
+          result.appendChild(h5);
+
+        } catch (error) {
+          
+        }
+        input.value=''
+      })
+    </script>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "personDetails": [
+    {
+      "id": 1,
+      "name": "Vinay",
+      "age": 24,
+      "sex": "Male",
+      "isEmployed": true,
+      "goodAt": "React, Javascript"
+    },
+    {
+      "id": 2,
+      "name": "Shilpa",
+      "age": 26,
+      "sex": "Female",
+      "isEmployed": true,
+      "goodAt": "html, css"
+    }
+  ]
+}
